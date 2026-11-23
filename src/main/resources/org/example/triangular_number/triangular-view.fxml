@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="org.example.triangular_number.TriangularController"
+      spacing="10" style="-fx-font-size: 12px;">
+    <padding>
+        <Insets top="16" right="16" bottom="16" left="16"/>
+    </padding>
+
+    <Label text="Triangular Number" prefHeight="36"
+           style="-fx-font-size: 24px; -fx-font-weight: bold;"/>
+
+    <VBox spacing="4">
+        <HBox alignment="BOTTOM_LEFT" spacing="12">
+            <VBox spacing="2" HBox.hgrow="ALWAYS">
+                <Label text="Upper limit (num)" labelFor="${upperLimitField}"/>
+                <TextField fx:id="upperLimitField" text="10000" minWidth="72"/>
+            </VBox>
+            <VBox spacing="2" minWidth="120" prefWidth="120" maxWidth="120">
+                <Label text="Threads (cnt)" labelFor="${threadCountField}"/>
+                <TextField fx:id="threadCountField" text="4"/>
+            </VBox>
+            <Button fx:id="startButton" text="Start" onAction="#startSearch"
+                    minWidth="80" defaultButton="true"/>
+            <Button fx:id="stopButton" text="Stop" onAction="#stopSearch"
+                    minWidth="80" disable="true" cancelButton="true"/>
+        </HBox>
+        <Label fx:id="errorLabel" visible="false" managed="false" wrapText="true"
+               style="-fx-text-fill: #a1261c;"/>
+    </VBox>
+
+    <Separator/>
+    <Label fx:id="statusLabel" text="Ready." wrapText="true"/>
+    <Label text="Thread progress" style="-fx-font-weight: bold;"/>
+    <ScrollPane fitToWidth="true" hbarPolicy="NEVER" vbarPolicy="AS_NEEDED"
+                minHeight="64" prefHeight="160" VBox.vgrow="ALWAYS" accessibleText="Thread progress">
+        <FlowPane fx:id="workerPane" hgap="12" vgap="12">
+            <padding>
+                <Insets top="12" right="12" bottom="12" left="12"/>
+            </padding>
+        </FlowPane>
+    </ScrollPane>
+
+    <VBox spacing="6">
+        <Label text="Triangular numbers" labelFor="${resultsArea}" style="-fx-font-weight: bold;"/>
+        <TextArea fx:id="resultsArea" editable="false" wrapText="true" prefHeight="70"/>
+    </VBox>
+    <VBox>
+        <Label fx:id="triangularCountLabel" text="Triangular numbers: 0"/>
+        <Label fx:id="nonTriangularCountLabel" text="Non-triangular numbers: 0"/>
+        <Label fx:id="totalCheckedLabel" text="Total checked: 0"/>
+    </VBox>
+</VBox>
